@@ -6,7 +6,7 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title class="text-weight-bold">
-          <span class="gt-sm">Qwitter</span>
+          <span class="gt-sm">{{ $route.name }}</span>
           <q-icon
           class="q-pa-md lt-md header-icon"
           name="fa-solid fa-dove"
@@ -28,6 +28,7 @@
         <q-item
           to="/"
           clickable
+          exact
           v-ripple>
           <q-item-section avatar>
             <q-icon name="fa-solid fa-house" />
@@ -38,6 +39,7 @@
         <q-item
             to="/about"
             clickable
+            exact
             v-ripple>
             <q-item-section avatar>
               <q-icon name="fa-solid fa-circle-question" />
