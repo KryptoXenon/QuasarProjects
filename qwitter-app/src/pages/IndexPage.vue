@@ -12,7 +12,7 @@
         </q-input>
       </div>
       <div class="col col-shrink">
-        <q-btn :disable="!newQweetContent" unelevated no-caps rounded color="primary" label="Qweet" class="q-mb-lg" />
+        <q-btn @click="addNewQweet" :disable="!newQweetContent" unelevated no-caps rounded color="primary" label="Qweet" class="q-mb-lg" />
       </div>
     </div>
     <q-separator size="7px" color="grey-3" class="divider" />
@@ -37,7 +37,7 @@
             <q-btn flat round color="grey" icon="far fa-comment" size="sm" />
             <q-btn flat round color="grey" icon="fas fa-retweet" size="sm" />
             <q-btn flat round color="grey" icon="far fa-heart" size="sm" />
-            <q-btn flat round color="grey" icon="fas fa-trash" size="sm" />
+            <q-btn @click="deleteQweet(qweet)" flat round color="grey" icon="fas fa-trash" size="sm" />
 
           </div>
         </q-item-section>
@@ -72,6 +72,21 @@ export default defineComponent({
       ]
     }
   },
+  methods: {
+    addNewQweet(){
+      let newQweet = {
+        content: this.newQweetContent,
+        date: Date.now()
+      }
+      this.qweets.unshift(newQweet) //push() adds the qweet to the last so use unshift()
+      this.newQweetContent = ''
+    },
+    deleteQweet(qweet){
+      let dateToDelete = qweet.date
+      let index = this.qweets.findIndex(qweet => qweet.date === dateToDelete)
+      this.qweets.splice(index, 1)
+    }
+  }
   // filters: {
   //   relativeDate(value) {
   //     return formatDistance(value, new Date(), { addSuffix: true })
